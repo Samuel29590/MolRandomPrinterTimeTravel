@@ -113,15 +113,15 @@ MolRandomReceiverImpl >> getTimeTravelServicesProvider [
 MolRandomReceiverImpl >> printRandomIntegerSmallerThan: anInteger [
 
 	self text:
-		(Random new nextIntegerBetween: 1 and: (anInteger-1)) asString
+		(Random new nextIntegerBetween: 1 and: anInteger - 1) asString
 			asRopedText.
-			
+
 	"--------------------------Time Travel--------------------------"
-	(MolUtils instanceOf: MolTimeTravel named: #default) ifNotNil: [ 
+	(MolUtils instanceOf: MolTimeTravel named: #default) ifNotNil: [
 		self getTimeTravelServicesProvider isRestoring ifFalse: [ 
 			self getTimeTravelServicesProvider
 				saveEvent: #printRandomIntegerSmallerThan:
 				performBy: self
 				withParameters: { anInteger } ] ]
-	"---------------------------------------------------------------"
+ 	"---------------------------------------------------------------"
 ]
