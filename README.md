@@ -18,11 +18,11 @@ Start and stop the example like this :
 
 The example is simple the component **MolRandomSender** produce one event each time we click on the button *Print random integer smaller than 100*. And the **MolRandomReceiver** consume that event and print a random integer between 1 and 99.
 
-**Illustration : **
+**Illustration :**
 
 ![image](https://user-images.githubusercontent.com/64481702/181502121-2b0a2909-4279-47e3-b679-00e4b471d953.png)
 
-**Code of the event : **
+**Code of the event :**
 
 ![image](https://user-images.githubusercontent.com/64481702/181505179-cf567cb0-a33d-48c1-ad99-888bc6c73a7c.png)
 
