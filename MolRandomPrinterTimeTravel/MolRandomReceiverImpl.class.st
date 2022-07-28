@@ -113,7 +113,7 @@ MolRandomReceiverImpl >> getTimeTravelServicesProvider [
 MolRandomReceiverImpl >> printRandomIntegerSmallerThan: anInteger [
 
 	self text:
-		(Random new nextIntegerBetween: 1 and: anInteger) asString
+		(Random new nextIntegerBetween: 1 and: (anInteger-1)) asString
 			asRopedText.
 			
 	"--------------------------Time Travel--------------------------"

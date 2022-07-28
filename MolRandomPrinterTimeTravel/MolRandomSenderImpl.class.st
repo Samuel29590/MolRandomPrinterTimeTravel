@@ -10,6 +10,7 @@ Class {
 MolRandomSenderImpl >> componentInitialize [
 
 	"--------------------------Time Travel--------------------------"
+
 	(MolUtils instanceOf: MolTimeTravel named: #default) ifNotNil: [ "Connection to the TimeTravel service."
 		self forServices: TimeTravelServices useProvider: #default.
 		"Subscription to the Time Travel event"
@@ -19,40 +20,41 @@ MolRandomSenderImpl >> componentInitialize [
 	"---------------------------------------------------------------"
 
 	self openInNewSpace
-		extent: 350 @ 50;	title: 'RandomPrinter Sender';
-		addChild: ((BlElement new
-				  background: Color orange;
-				  geometry: (BlRoundedRectangleGeometry cornerRadius: 2);
-				  padding: (BlInsets
-						   top: 8
-						   right: 16
-						   bottom: 8
-						   left: 16);
-				  layout: BlLinearLayout horizontal;
-				  effect: (BlGaussianShadowEffect
-						   color: (Color black alpha: 0.3)
-						   width: 1
-						   offset: 0 @ 2);
-				  constraintsDo: [ :c | 
-					  c horizontal fitContent.
-					  c vertical fitContent ];
-				  addEventHandler: (BlEventHandler
-						   on: BlClickEvent
-						   do: [ :anEvent | 
-							   self getMolRandomSenderEventsNotifier 
-								   printRandomIntegerSmallerThan: 100.
-							   anEvent consumed: true ])) addChild:
-				 (BlTextElement new text:
-					  ('Print random integer smaller than 100' asRopedText
-						   foreground: Color black;
-						   fontSize: 16;
-						   thin))).
-						
+		extent: 350 @ 50;
+		title: 'RandomPrinter Sender'.
+	self
+		background: Color orange;
+		relocate: 5 @ 5;
+		geometry: (BlRoundedRectangleGeometry cornerRadius: 2);
+		padding: (BlInsets
+				 top: 8
+				 right: 16
+				 bottom: 8
+				 left: 16);
+		layout: BlLinearLayout horizontal;
+		effect: (BlGaussianShadowEffect
+				 color: (Color black alpha: 0.3)
+				 width: 1
+				 offset: 0 @ 2);
+		constraintsDo: [ :c | 
+			c horizontal fitContent.
+			c vertical fitContent ];
+		addEventHandler: (BlEventHandler
+				 on: BlClickEvent
+				 do: [ :anEvent | 
+					 self getMolRandomSenderEventsNotifier 
+						 printRandomIntegerSmallerThan: 100.
+					 anEvent consumed: true ]);
+		addChild: (BlTextElement new text:
+					 ('Print random integer smaller than 100' asRopedText
+						  foreground: Color black;
+						  fontSize: 16;
+						  thin)).
+
 	"--------------------------Time Travel--------------------------"
-	(MolUtils instanceOf: MolTimeTravel named: #default) ifNotNil: [
+	(MolUtils instanceOf: MolTimeTravel named: #default) ifNotNil: [ "---------------------------------------------------------------"
 		self getTimeTravelServicesProvider isRestoring ifFalse: [ "Component saves its state." 
 			self saveForTimeTravel ] ]
-	"---------------------------------------------------------------"
 ]
 
 { #category : #'life cycle' }
