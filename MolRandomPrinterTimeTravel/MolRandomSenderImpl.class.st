@@ -9,15 +9,6 @@ Class {
 { #category : #'life cycle' }
 MolRandomSenderImpl >> componentInitialize [
 
-	"--------------------------Time Travel--------------------------"
-	(MolUtils instanceOf: MolTimeTravel named: #default) ifNotNil: [ "Connection to the TimeTravel service." 
-		self forServices: TimeTravelServices useProvider: #default ].
-	self getTimeTravelServicesProvider isNotFoundServices ifFalse: [ "Subscription to the Time Travel event"
-		self getTimeTravelEventsSubscriber subscribe: self.
-		self getTimeTravelServicesProvider isRestoring ifFalse: [ "Component notifies its creation" 
-			self getTimeTravelServicesProvider creationOf: self ] ].
-	"---------------------------------------------------------------"
-
 	self openInNewSpace
 		extent: 350 @ 50;
 		title: 'RandomPrinter Sender'.
@@ -49,12 +40,6 @@ MolRandomSenderImpl >> componentInitialize [
 						  foreground: Color black;
 						  fontSize: 16;
 						  thin)).
-
-	"--------------------------Time Travel--------------------------"
-	self getTimeTravelServicesProvider isNotFoundServices ifFalse: [ 
-		self getTimeTravelServicesProvider isRestoring ifFalse: [ "Component saves its state." 
-			self saveForTimeTravel ] ].
-	"---------------------------------------------------------------"
 ]
 
 { #category : #'life cycle' }
